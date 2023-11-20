@@ -1,0 +1,42 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+<!-- Название у нас будет Post -->
+{% block title %}
+{{ post.title }}
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+
+<h1><span style="text-decoration: underline;">{{ post.title }}</span></h1>
+<p>{{ post.content }}</p>
+<p>Категория: {{ post.type }}</p>
+<p>Цена: {{ post.price }}</p>
+<p>Продавец: {{ post.author }}</p>
+<h8>Дата публикации: {{ post.created_at|date:'j M Y' }}</h8>
+<hr>
+{% if img_obj %}
+  <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+{% endif %}
+
+<table>
+    <tr>
+        <td><b>Комментарии:</b></td>
+    </tr>
+    {% for com in comments %}
+
+    <tr>
+        <td>{{ com.content }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<hr>
+<a class="nav-link" href="{{ post.id }}/update ">Изменить</a>
+<a class="nav-link" href="{{ post.id }}/delete ">Удалить</a>
+<a class="nav-link" href="{{ post.id }}/create_comment ">Оставить отзыв</a>
+
+<p>&nbsp;</p>
+{% endblock content %}

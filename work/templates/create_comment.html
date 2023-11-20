@@ -1,0 +1,10 @@
+{% extends 'flatpages/default.html' %}
+
+<p>{% block content %}</p>
+<h1>Добавить комментарий</h1>
+<hr /><form action="" method="post">
+<p>{% csrf_token %}{{ form.as_p }}</p>
+<p style="text-align: center;"><input type="submit" value="Опубликовать" /></p>
+</form>
+<p>&nbsp;</p>
+<p>{% endblock %}</p>
